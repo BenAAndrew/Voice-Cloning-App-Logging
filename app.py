@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, Response
 from flask_sqlalchemy import SQLAlchemy
 import os
 from datetime import datetime
+import threading
 
 
 app = Flask(__name__, template_folder="static")
@@ -42,6 +43,9 @@ def view():
 
     return render_template("view.html", logs=logs)
 
+lock = threading.Lock()
+with lock:
+    db.create_all()
 
 if __name__ == "__main__":
     app.run(debug=True)
