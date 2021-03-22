@@ -25,7 +25,7 @@ class Error(db.Model):
 @app.route("/", methods=["GET", "POST"])
 def log():
     try:
-        error = Error(**request.data)
+        error = Error(**request.values)
         db.session.add(error)
         db.session.commit()
     except:
