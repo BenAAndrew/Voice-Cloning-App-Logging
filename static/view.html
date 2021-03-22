@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+{% if not logs %}
+    <form method="POST">
+        <input type="password" name="password" required>
+        <input type="submit">
+    </form>
+{% else %}
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Type</th>
+        <th>Text</th>
+        <th>Stacktrace</th>
+    </tr>
+    {% for log in logs %}
+        <tr>
+            <td>{{ log.created_at.strftime('%d/%m/%Y %H:%M:%S') }}</td>
+            <td>{{ log.type }}</td>
+            <td>{{ log.text }}</td>
+            <td>{{ log.stacktrace }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endif %}
+</body>
+</html>
