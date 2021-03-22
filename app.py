@@ -39,7 +39,7 @@ def view():
     logs = None
     if request.method == "POST":
         if request.values["password"] == service_password:
-            logs = Error.query.order_by(Error.created_at).all()
+            logs = Error.query.order_by(Error.created_at.desc()).all()
 
     return render_template("view.html", logs=logs)
 
